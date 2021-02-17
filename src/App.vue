@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class="footer">
-		<p>&copy;2021 TheLow</p>
+		<p>COPYRIGHT &copy;2021 THE-LOW ALL RIGHT RESERVED.</p>
 	</div>
 </template>
 
@@ -96,12 +96,19 @@ pre {
 }
 
 .footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin: 0;
-	height: 24px;
+	box-sizing: content-box;
+	height: 32px;
+	background: #353535;
 }
 .footer p {
 	margin: 0;
-	height: 24px;
+	padding: 0;
+	color: #89b0ae;
+	font-size: 13px;
 	text-align: center;
 }
 </style>
