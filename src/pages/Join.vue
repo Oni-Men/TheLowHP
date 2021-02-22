@@ -23,7 +23,8 @@
 			<p>
 				<span>「サーバーアドレス/Server Address」に</span>
 				<copy-field :text="'mc.eximradar.jp'" />
-				<span>と入力し、「Done/完了」をクリックします</span>
+				<span>と入力し、「Done/完了」</span>
+				<span>をクリックします</span>
 			</p>
 		</image-card>
 		<image-card :src="JoinServer" :inverted="true">

@@ -1,6 +1,6 @@
 <template>
 	<div class="image-card" :class="{ inverted }">
-		<section class="text" :class="[inverted ? 'text-left' : 'text-right']">
+		<section class="text">
 			<slot> </slot>
 		</section>
 		<zoom-image :src="src" />
@@ -39,14 +39,6 @@ export default {
 
 	.inverted {
 		flex-direction: row-reverse;
-	}
-
-	.text-left {
-		text-align: left;
-	}
-
-	.text-right {
-		text-align: right;
 	}
 }
 </style>
