@@ -1,7 +1,7 @@
 <template>
 	<div class="main">
 		<div class="visual">
-			<img class="logo" src="../assets/TheLow-Logo-Set/wordmark.svg" alt="THE LOW" />
+			<img class="logo" src="../assets/TheLow-Logo-Set/logo.svg" alt="THE LOW" />
 			<span v-if="online">{{ players }} Players Online</span>
 			<span v-else style="color: #f66;">SERVER IS OFFLINE</span>
 		</div>
@@ -95,6 +95,7 @@ export default {
 
 .logo {
 	max-width: 80%;
+	max-height: 60%;
 	width: 20em;
 	height: auto;
 }
