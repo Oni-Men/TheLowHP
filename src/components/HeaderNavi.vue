@@ -1,9 +1,7 @@
 <template>
 	<div class="main">
 		<div class="visual">
-			<span class="logo">
-				<img src="../assets/TheLow-Logo-Set/wordmark.svg" alt="THE LOW" />
-			</span>
+			<img class="logo" src="../assets/TheLow-Logo-Set/wordmark.svg" alt="THE LOW" />
 			<span v-if="online">{{ players }} Players Online</span>
 			<span v-else style="color: #f66;">SERVER IS OFFLINE</span>
 		</div>
@@ -69,18 +67,10 @@ export default {
 	.desktop {
 		display: none;
 	}
-
-	.panel .desktop {
-		display: none;
-	}
 }
 
 @media screen and (min-width: 40.01em) {
 	.mobile {
-		display: none;
-	}
-
-	.panel .mobile {
 		display: none;
 	}
 }
@@ -103,9 +93,10 @@ export default {
 	color: white;
 }
 
-.logo img {
-	width: auto;
-	height: 10vh;
+.logo {
+	max-width: 80%;
+	width: 20em;
+	height: auto;
 }
 
 .naviWrap {
