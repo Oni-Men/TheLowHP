@@ -87,6 +87,10 @@ pre {
 	border-color: darkslategray;
 }
 
+#app .center {
+	text-align: center;
+}
+
 .background {
 	background: white;
 	min-height: calc(50vh - 24px);

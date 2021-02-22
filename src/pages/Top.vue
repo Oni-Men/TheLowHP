@@ -1,5 +1,9 @@
 <template>
 	<div id="top">
+		<h1>TheLowとは？</h1>
+		<p class="center">
+			Minecraft JE - 1.8.8から1.8.9でプレイできる、(自称)RPGサーバーです。
+		</p>
 		<div v-for="card in cards" :key="card.image">
 			<introduce-card :src="card.image">
 				<template v-slot:title>{{ card.title }}</template>
