@@ -3,7 +3,7 @@
 		<div v-for="card in cards" :key="card.image">
 			<introduce-card :src="card.image">
 				<template v-slot:title>{{ card.title }}</template>
-				<template v-slot:text><span v-html="card.text"></span></template>
+				<template v-slot:text><markdown-view :md="card.text"/></template>
 				<template v-slot:icon>
 					<img class="job-icon" :src="card.icon" />
 				</template>
@@ -24,9 +24,10 @@ import AileDore from "../assets/aile_dore.jpg";
 import PlayStyle from "../assets/top/playstyle.svg";
 import Craft from "../assets/top/craft.svg";
 import Quest from "../assets/top/quest.svg";
+import MarkdownView from "../components/MarkdownView.vue";
 
 export default {
-	components: { IntroduceCard },
+	components: { IntroduceCard, MarkdownView },
 	setup() {
 		const cards = [
 			{

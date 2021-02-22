@@ -97,6 +97,10 @@ const replacers = {
 };
 
 export function markdownToHtml(input) {
+	if (!input) {
+		return "";
+	}
+
 	const parsed = [];
 	const lines = input.trim().split("\n");
 

@@ -1,5 +1,6 @@
 <template>
 	<div id="faq">
+		<h2>よくある質問</h2>
 		<div class="questionList">
 			<p>
 				<span>もしかしたら<a href="https://wikiwiki.jp/thelow/">TheLow攻略Wiki</a></span>
@@ -9,7 +10,7 @@
 			<div v-for="item in items" :key="item.question">
 				<div class="question">
 					<h3>Q. {{ item.question }}</h3>
-					<p><span v-html="item.answer"></span></p>
+					<markdown-view :md="item.answer" />
 				</div>
 			</div>
 		</div>
@@ -17,8 +18,10 @@
 </template>
 <script>
 import { markdownToHtml } from "@/mixins";
+import MarkdownView from "../components/MarkdownView.vue";
 
 export default {
+	components: { MarkdownView },
 	setup() {
 		const items = [
 			{
