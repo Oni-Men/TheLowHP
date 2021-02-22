@@ -64,18 +64,18 @@ pre {
 }
 
 #app i {
-	color: #89b0ae;
+	color: #327a9b;
 }
 
 #app a {
-	color: #89b0ae;
+	color: #327a9b;
 	text-decoration: none;
 }
 
 #app hr {
 	height: 0;
 	border: none;
-	border-top: 4px dotted #89b0ae;
+	border-top: 4px dotted #327a9b;
 }
 
 #app code {
@@ -83,7 +83,7 @@ pre {
 }
 
 #app .router-link-active {
-	color: #555b6e;
+	color: #7e9fc5;
 	border-color: darkslategray;
 }
 
