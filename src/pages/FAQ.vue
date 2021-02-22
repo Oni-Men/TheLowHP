@@ -6,14 +6,12 @@
 				<span>でも、あなたの疑問が解決できるかもしれませんよ。</span>
 				<span>ぜひご活用ください!</span>
 			</p>
-			<ul>
-				<li v-for="item in items" :key="item.question">
-					<div class="question">
-						<h3>Q. {{ item.question }}</h3>
-						<p><span v-html="item.answer"></span></p>
-					</div>
-				</li>
-			</ul>
+			<div v-for="item in items" :key="item.question">
+				<div class="question">
+					<h3>Q. {{ item.question }}</h3>
+					<p><span v-html="item.answer"></span></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -25,8 +23,7 @@ export default {
 		const items = [
 			{
 				question: "MODは必要ですか？",
-				answer:
-					"いいえ、必要ありません。しかしより快適にプレイしたいときは、[許可されているMOD](/rules)を導入するとよいでしょう。",
+				answer: `いいえ、必要ありません。しかしより快適にプレイしたいときは、[許可されているMOD](/rules)を導入するとよいでしょう。`,
 			},
 			{
 				question: "何をしたらいいですか？",
@@ -35,8 +32,16 @@ export default {
 			},
 			{
 				question: "許可されているMODが知りたいです。",
-				answer:
-					"Optifine、StatusEffectHUD、ArmorStatusHUD、GammaBright、Toggle Sneak、Damage Indicators。これらが許可されています。",
+				answer: `
+- Optifine
+- StatusEffectHUD
+- ArmorStatusHUD
+- GammaBright
+- Toggle Sneak
+- Damage Indicators
+
+これらが許可されています。
+				`,
 			},
 			{
 				question: "スタッフは募集していますか？",

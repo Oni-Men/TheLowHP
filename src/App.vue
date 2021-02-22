@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class="footer">
-		<p>COPYRIGHT &copy;2021 THE-LOW ALL RIGHT RESERVED.</p>
+		<p>COPYRIGHT &copy;2021 TheLow ALL RIGHT RESERVED.</p>
 	</div>
 </template>
 
@@ -76,6 +76,10 @@ pre {
 	height: 0;
 	border: none;
 	border-top: 4px dotted #89b0ae;
+}
+
+#app code {
+	display: block;
 }
 
 #app .router-link-active {

@@ -35,7 +35,7 @@
 			</p>
 		</image-card>
 		<image-card :src="TheLowGate">
-			<h3>5. The Lowに参加</h3>
+			<h3>5. TheLowに参加</h3>
 			<p>
 				<span>ワールド読み込みが完了したら「TheLow」</span>
 				<span>のゲートに入ってください。</span>
@@ -54,12 +54,11 @@ import TypeAddress from "../assets/join/type-address.png";
 import JoinServer from "../assets/join/join-server.png";
 import TheLowGate from "../assets/join/the-low-gate.png";
 
-import CopyField from "../components/CopyField.vue";
 import ImageCard from "../components/ImageCard.vue";
 
 export default {
 	name: "join",
-	components: { CopyField, ImageCard },
+	components: { ImageCard },
 	setup() {
 		const items = [];
 

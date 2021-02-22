@@ -2,15 +2,12 @@
 	<div class="main">
 		<div class="visual">
 			<span class="logo">
-				<img src="../assets/logo.svg" alt="THE LOW" />
+				<img src="../assets/TheLow-Logo-Set/wordmark.svg" alt="THE LOW" />
 			</span>
 			<span v-if="online">{{ players }} Players Online</span>
 			<span v-else style="color: #f66;">SERVER IS OFFLINE</span>
 		</div>
-		<div class="panel">
-			<div class="mobile"></div>
-			<div class="desktop"></div>
-		</div>
+		<div class="panel"></div>
 	</div>
 	<div class="naviWrap">
 		<div id="navi">
@@ -106,6 +103,11 @@ export default {
 	color: white;
 }
 
+.logo img {
+	width: auto;
+	height: 10vh;
+}
+
 .naviWrap {
 	width: 100%;
 	height: 50vh;
@@ -122,20 +124,8 @@ export default {
 .panel {
 	height: 50vh;
 	overflow: hidden;
-	background-size: cover;
-}
-
-.panel .desktop {
 	width: 100%;
-	height: 100%;
-	background: url("../assets/bellfort_1.jpg") center center no-repeat fixed;
-	background-size: cover;
-}
-
-.panel .mobile {
-	width: 100%;
-	height: 100%;
-	background: url("../assets/venemia.jpg") center center no-repeat fixed;
+	background: url("../assets/venemia.jpg") center center no-repeat;
 	background-size: cover;
 }
 

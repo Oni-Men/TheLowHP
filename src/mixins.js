@@ -7,7 +7,7 @@ export const globalMixins = {
 };
 
 export function setTitle(title) {
-	return (window.document.title = !title ? "The Low HP" : title + " - " + "The Low");
+	return (window.document.title = !title ? "TheLow" : title + " - " + "TheLow");
 }
 
 export async function fetchServerInformation() {
@@ -41,11 +41,42 @@ const replacers = {
 	h3(text) {
 		return text.replace(/^#{3} (.+)$/u, "<h3>$1</h3>");
 	},
+	ul(text, context) {
+		if (text.match(/^- (.+)$/u) == null) {
+			return text;
+		}
+		const replaced = text.replace(/^- (.+)$/u, "<li>$1</li>");
+		if (context.currentTag == "ul") {
+			return replaced;
+		} else {
+			context.tags.push("ul");
+			return `<ul>${replaced}`;
+		}
+	},
 	bold(text) {
 		return text.replace(/\*{2}(.+)\*{2}/u, `<b>$1</b>`);
 	},
+	strikeThrough(text) {
+		return text.replace(/~{2}(.+)~{2}/u, `<s>$1</s>`);
+	},
 	italic(text) {
 		return text.replace(/\*(.+)\*/u, `<i>$1</i>`);
+	},
+	blockCode(text) {
+		// if (text.match(/^`{3}(.+)?$/u) == null) {
+		// 	return text;
+		// }
+		// const replaced = text.replace(/^`{3}(.+)?$/u, `<code class="$1"><pre>`);
+		// if (context.currentTag == "code") {
+		// 	return "</pre></code>";
+		// } else {
+		// 	context.tags.push("code");
+		// 	return replaced;
+		// }
+		return text;
+	},
+	inlineCode(text) {
+		return text.replace(/`(.+)`/, "<pre>$1</pre>");
 	},
 	url(text) {
 		//相対パスも使用するためURLの正規表現は特に縛らない
@@ -54,8 +85,14 @@ const replacers = {
 	hr(text) {
 		return text.replace(/-{3,}/u, "<hr />");
 	},
-	reset(text) {
-		return text.replace(/^\s*$/u, "<br />");
+	reset(text, context) {
+		if (text.match(/^\s*$/) == null) {
+			return text;
+		}
+		context.tags.forEach((tag) => {
+			text = `${text}</${tag}>`;
+		});
+		return text;
 	},
 };
 
@@ -63,10 +100,27 @@ export function markdownToHtml(input) {
 	const parsed = [];
 	const lines = input.trim().split("\n");
 
+	const getIndentSize = (text) => {
+		const firstOfNotBlank = text.replace(/\t/, "  ").search(/\S/);
+		return parseInt(text.substring(0, firstOfNotBlank).length / 2);
+	};
+
+	const context = {
+		indent: 0,
+		tags: [],
+		get currentTag() {
+			return this.tags[this.tags.length - 1];
+		},
+		peekTag(i) {
+			return this.tags[this.tags.length - 1 - i];
+		},
+	};
+
 	while (lines.length) {
+		context.indent = getIndentSize(lines[0]);
 		let line = lines.shift().trim();
 		for (const replace of Object.values(replacers)) {
-			line = replace(line);
+			line = replace(line, context);
 		}
 		parsed.push(line);
 	}
