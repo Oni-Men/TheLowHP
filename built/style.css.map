@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/client/app.vue?7881"],"names":[],"mappings":";AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"style.css","sourcesContent":["\n.stretch[data-v-5e79e3f6] {\r\n\twidth: 100%;\r\n\theight: 100vh;\n}\n.panel[data-v-5e79e3f6] {\r\n\twidth: 100%;\n}\r\n"],"sourceRoot":""}
