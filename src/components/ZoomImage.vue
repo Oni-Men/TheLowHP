@@ -34,6 +34,10 @@ export default {
 	align-items: center;
 }
 
+.zoom img {
+	cursor: zoom-out;
+}
+
 #zoom-image {
 	display: flex;
 	justify-content: center;
@@ -43,6 +47,7 @@ export default {
 img {
 	max-width: 90%;
 	max-height: 90%;
+	cursor: zoom-in;
 }
 
 .fade-enter-active,
