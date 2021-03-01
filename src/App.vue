@@ -17,12 +17,22 @@ import HeaderNavi from "./components/HeaderNavi.vue";
 import AddressPopout from "./components/AddressPopout.vue";
 import DiscordLogo from "./components/DiscordLogo.vue";
 
+import { useRouter } from "vue-router";
+
 export default {
 	name: "App",
 	components: {
 		HeaderNavi,
 		AddressPopout,
 		DiscordLogo,
+	},
+	setup() {
+		const router = useRouter();
+
+		const params = new URLSearchParams(window.location.search);
+		if (params.get("p")) {
+			router.push(params.get("p"));
+		}
 	},
 };
 </script>
