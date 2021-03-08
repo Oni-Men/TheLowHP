@@ -26,7 +26,7 @@ export default {
 		const items = [
 			{
 				question: "MODは必要ですか？",
-				answer: `いいえ、必要ありません。しかしより快適にプレイしたいときは、[許可されているMOD](/TheLowHP/rules)を導入するとよいでしょう。`,
+				answer: `いいえ、必要ありません。しかしより快適にプレイしたいときは、[許可されているMOD](/thelow/rules)を導入するとよいでしょう。`,
 			},
 			{
 				question: "何をしたらいいですか？",
