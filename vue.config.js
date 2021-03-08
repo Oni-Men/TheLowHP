@@ -1,7 +1,7 @@
 module.exports = {
-	publicPath: process.env.NODE_ENV === "production" ? "/TheLowHP/" : "/",
+	publicPath: process.env.NODE_ENV === "production" ? "/thelow/" : "/",
 	assetsDir: "",
-	outputDir: "./docs",
+	outputDir: "./built",
 	configureWebpack: {
 		module: {
 			rules: [
