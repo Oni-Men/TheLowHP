@@ -12,31 +12,31 @@ export const router = createRouter({
 	history: routerHistory,
 	routes: [
 		{
-			path: "/TheLowHP/",
+			path: "/thelow/",
 			name: "index",
 			component: Top,
 			meta: {},
 		},
 		{
-			path: "/TheLowHP/join",
+			path: "/thelow/join",
 			name: "join",
 			component: Join,
 			meta: { title: "Join" },
 		},
 		{
-			path: "/TheLowHP/rules",
+			path: "/thelow/rules",
 			name: "rules",
 			component: Rules,
 			meta: { title: "Rules" },
 		},
 		{
-			path: "/TheLowHP/faq",
+			path: "/thelow/faq",
 			name: "faq",
 			component: FAQ,
 			meta: { title: "FAQ" },
 		},
 		{
-			path: "/TheLowHP/:catchAll(.*)",
+			path: "/thelow/:catchAll(.*)",
 			component: NotFound,
 			meta: { title: "404" },
 		},
