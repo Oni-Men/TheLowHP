@@ -18,19 +18,19 @@ export const router = createRouter({
 			meta: {},
 		},
 		{
-			path: "/thelow/join",
+			path: "/thelow/?p=join",
 			name: "join",
 			component: Join,
 			meta: { title: "Join" },
 		},
 		{
-			path: "/thelow/rules",
+			path: "/thelow/?p=rules",
 			name: "rules",
 			component: Rules,
 			meta: { title: "Rules" },
 		},
 		{
-			path: "/thelow/faq",
+			path: "/thelow/?p=faq",
 			name: "faq",
 			component: FAQ,
 			meta: { title: "FAQ" },

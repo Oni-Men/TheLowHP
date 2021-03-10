@@ -28,10 +28,9 @@ export default {
 	},
 	setup() {
 		const router = useRouter();
-
 		const params = new URLSearchParams(window.location.search);
 		if (params.get("p")) {
-			router.push(params.get("p"));
+			router.push({ name: params.get("p") });
 		}
 	},
 };
