@@ -11,6 +11,12 @@
 						</router-link>
 					</ul>
 				</nav>
+				<a href="https://portal.eximradar.jp/">
+					<div id="back-to-portal">
+						<img src="../assets/icons/back-to-portal.svg" />
+						<p>ポータルに戻る</p>
+					</div>
+				</a>
 			</div>
 			<img class="openMenu" v-else @click="openMenu()" src="../assets/icons/menu.svg" />
 		</transition>
@@ -71,6 +77,7 @@ export default {
 @media screen and (max-width: 40em) {
 	.navigator {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		position: fixed;
@@ -93,7 +100,7 @@ export default {
 	}
 
 	a {
-		margin: auto;
+		margin: 0;
 		width: 50%;
 	}
 
@@ -139,6 +146,23 @@ export default {
 	.openMenu {
 		display: none;
 	}
+
+	#back-to-portal {
+		position: absolute;
+		bottom: -1em;
+		left: 2em;
+	}
+}
+
+#back-to-portal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#back-to-portal img {
+	width: 1.5em;
+	height: 1.5em;
 }
 
 ul {
