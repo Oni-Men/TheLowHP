@@ -20,7 +20,9 @@ export async function fetchServerInformation() {
 		return;
 	}
 
-	const request = new Request("https://mcapi.us/server/status?ip=mc.eximradar.jp");
+	const request = new Request("https://mcapi.us/server/status?ip=mc.eximradar.jp", {
+		mode: "cors",
+	});
 	return fetch(request)
 		.then((response) => response.json())
 		.then((json) => {
