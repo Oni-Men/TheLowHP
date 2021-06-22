@@ -1,7 +1,7 @@
 <template>
 	<div class="main">
 		<div class="visual">
-			<img class="logo" src="../assets/TheLow-Logo-Set/logo.svg" alt="THE LOW" />
+			<img class="logo" src="../assets/TheLow-Logo-Set/logo.svg" alt="THE LOW" @click="downloadResourceSet()" />
 			<span v-if="online">{{ players }} Players Online</span>
 			<span v-else style="color: #f66;">SERVER IS OFFLINE</span>
 		</div>
@@ -51,12 +51,17 @@ export default {
 			navigatorStatus.value = false;
 		};
 
+		const downloadResourceSet = () => {
+			console.log("download");
+		};
+
 		return {
 			navigatorStatus,
 			openMenu,
 			closeMenu,
 			online,
 			players,
+			downloadResourceSet,
 		};
 	},
 };

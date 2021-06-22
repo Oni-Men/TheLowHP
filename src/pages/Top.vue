@@ -4,6 +4,10 @@
 		<p class="center">
 			Minecraft JE - 1.8.8と1.8.9でプレイできる、(自称)RPGサーバーです。
 		</p>
+		<p class="center">
+			TheLowのロゴセットを公開しました。<a href="/thelow/TheLow-Logo-Set.zip" download>ここをクリック</a
+			>してダウンロードできます。
+		</p>
 		<div v-for="card in cards" :key="card.image">
 			<introduce-card :src="card.image">
 				<template v-slot:title>{{ card.title }}</template>
