@@ -29,7 +29,7 @@ export default {
 				answer: `いいえ、必要ありません。しかしより快適にプレイしたいときは、[許可されているMOD](/thelow/?p=rules)を導入するとよいでしょう。`,
 			},
 			{
-				question: "何をしたらいいですか？",
+				question: "最近始めました。何をしたらいいですか？",
 				answer:
 					"/guideコマンドを実行してみたり、[公式Discord](https://discord.gg/kVyPVky)で質問してみると良いでしょう。",
 			},
