@@ -42,4 +42,14 @@ jobs:
             mput -r .
             exit
           " > /tmp/commands.ftp
-          sftp ${{ secrets.SFTP_COMMAND }} < /tmp/commands.ftp
+          expect -c "
+          spawn sftp ${{ secrets.SFTP_COMMAND }} < /tmp/commands.ftp
+          expect {
+            "(yes/no)? {
+              send "yes\n"
+              exp_continue
+            }
+            "password:" {
+              send "${{ secrets.SFTP_PASSWORD }}\n"
+            }
+          }
