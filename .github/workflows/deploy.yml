@@ -42,5 +42,4 @@ jobs:
             exit
           " > /tmp/commands.ftp
           sftp ${{ secrets.SFTP_COMMAND }} < /tmp/commands.ftp
-          shell: bash
 
