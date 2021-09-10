@@ -37,9 +37,9 @@ jobs:
       - run: |
           cd built
           echo "
+            ${{ secrets.SFTP_PASSWORD }}
             $(find . -type d | sed -e 's/^/mkdir /;')
             mput -r .
             exit
           " > /tmp/commands.ftp
           sftp ${{ secrets.SFTP_COMMAND }} < /tmp/commands.ftp
-
