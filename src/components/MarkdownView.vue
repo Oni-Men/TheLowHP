@@ -5,15 +5,14 @@
 </template>
 
 <script>
-import { markdownToHtml } from "@/mixins";
+import marked from "marked";
 
 export default {
 	name: "MarkdownView",
 	props: ["md"],
 	setup(props) {
-		const html = markdownToHtml(props.md);
 		return {
-			html,
+			html: marked(props.md),
 		};
 	},
 };
