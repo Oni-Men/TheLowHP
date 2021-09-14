@@ -8,7 +8,7 @@
 - [TheLow ダメージ計算](https://taichi3012.github.io/ThelowDamageCalculation/)
 - [公式 MOD](https://github.com/Oni-Men/ExtendTheLow/releases/latest)
 
-## EXR-NetWork
+## EXR-Network
 
 - [EXR-Network Portal](https://portal.eximradar.jp/)
 - [Twitter](https://twitter.com/mcexr)
