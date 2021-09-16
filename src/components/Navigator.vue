@@ -1,26 +1,16 @@
 <template>
-	<div>
-		<transition name="fade">
-			<div class="navigator" v-if="show" @click="closeMenu()">
-				<nav>
-					<ul>
-						<router-link v-for="(item, index) of items" :key="item.url" :to="{ name: item.name }">
-							<li :class="{ separate: index !== 0 && index !== items.length }">
-								{{ item.display }}
-							</li>
-						</router-link>
-					</ul>
-				</nav>
-				<a href="https://portal.eximradar.jp/">
-					<div id="back-to-portal">
-						<img src="../assets/icons/back-to-portal.svg" />
-						<p>ポータルに戻る</p>
-					</div>
-				</a>
-			</div>
-			<img class="openMenu" v-else @click="openMenu()" src="../assets/icons/menu.svg" />
-		</transition>
-	</div>
+	<transition name="fade">
+		<div class="navigator" v-if="show" @click="closeMenu()">
+			<nav>
+				<ul>
+					<router-link v-for="item of items" :key="item.url" :to="item">
+						<li>{{ item.display }}</li>
+					</router-link>
+				</ul>
+			</nav>
+		</div>
+		<img class="openMenu" v-else @click="openMenu()" src="../assets/icons/menu.svg" />
+	</transition>
 </template>
 <script>
 export default {
@@ -36,23 +26,31 @@ export default {
 	setup(_, context) {
 		const items = [
 			{
-				url: "/",
-				name: "index",
-				display: "トップ",
+				name: "article",
+				params: {
+					id: "about",
+				},
+				display: "TheLowとは",
 			},
 			{
-				url: "/join",
-				name: "join",
+				name: "article",
+				params: {
+					id: "join",
+				},
 				display: "参加する",
 			},
 			{
-				url: "/rules",
-				name: "rules",
+				name: "article",
+				params: {
+					id: "rules",
+				},
 				display: "ルール",
 			},
 			{
-				url: "/faq",
-				name: "faq",
+				name: "article",
+				params: {
+					id: "faq",
+				},
 				display: "よくある質問",
 			},
 		];
@@ -83,10 +81,10 @@ export default {
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 9999;
 		width: 100vw;
 		height: 100vh;
 		background: #fffe;
+		z-index: 999;
 	}
 
 	nav {
@@ -125,18 +123,13 @@ export default {
 @media screen and (min-width: 40.01em) {
 	.navigator {
 		width: 100%;
-		background: white;
-		z-index: 200;
+		padding: 1em 0;
 	}
 
 	ul {
 		max-width: 1000px;
 		flex-direction: row;
 	}
-	.separate {
-		border-left: 2px solid #353535;
-	}
-
 	ul li {
 		padding: 0.2em 1em;
 		width: 120px;
@@ -147,22 +140,27 @@ export default {
 		display: none;
 	}
 
-	#back-to-portal {
-		position: absolute;
-		bottom: -1em;
-		left: 2em;
+	a::after {
+		content: "";
+		display: block;
+		position: relative;
+		top: 4px;
+		left: 10%;
+		width: 80%;
+		height: 2px;
+		color: #7e9fc5;
+		background-color: #7e9fc5;
+		transform: scale(0, 1);
 	}
-}
 
-#back-to-portal {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+	a:hover::after {
+		transition: transform 0.2s ease-out;
+		transform: scale(1, 1);
+	}
 
-#back-to-portal img {
-	width: 1.5em;
-	height: 1.5em;
+	.router-link-active::after {
+		transform: scale(1, 1);
+	}
 }
 
 ul {

@@ -1,6 +1,6 @@
 <template>
 	<div id="not-found">
-		<h1>404 - Not Found</h1>
+		<h2>404 - Not Found</h2>
 		<p>お目当てのものは、ここにはないようだ。</p>
 	</div>
 </template>

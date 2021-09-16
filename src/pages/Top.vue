@@ -1,28 +1,22 @@
 <template>
-	<div id="top">
-		<h1>TheLowとは？</h1>
-		<p class="center">
-			Minecraft JE - 1.8.8と1.8.9でプレイできる、(自称)RPGサーバーです。
-		</p>
-		<p class="center">
-			TheLowのロゴセットを公開しました。<a href="/thelow/TheLow-Logo-Set.zip" download>ここをクリック</a
-			>してダウンロードできます。
-		</p>
-		<div v-for="card in cards" :key="card.image">
-			<introduce-card :src="card.image">
-				<template v-slot:title>{{ card.title }}</template>
-				<template v-slot:text><markdown-view :md="card.text"/></template>
-				<template v-slot:icon>
-					<img class="job-icon" :src="card.icon" />
+	<div id="top" @mousewheel="next">
+		<div v-for="(card, index) in cards" :key="card.image" :id="index" class="card">
+			<img :src="card.image" :key="card.image" />
+			<div class="msg">
+				<span class="title">{{ card.title }}</span>
+				<markdown-view :md="card.text" />
+				<template v-if="index + 1 !== cards.length">
+					<text-arrow :href="`#${index + 1}`" pos="bottom">
+						NEXT
+					</text-arrow>
 				</template>
-			</introduce-card>
+			</div>
 		</div>
+		<navigator class="navi" />
 	</div>
 </template>
 <script>
-import { markdownToHtml } from "@/mixins";
-
-import IntroduceCard from "../components/IntroduceCard.vue";
+import Meltoria2 from "../assets/meltoria_2.jpg";
 import Ashvy1 from "../assets/ashvy_1.jpg";
 import Ashvy2 from "../assets/ashvy_2.jpg";
 import Bellfort1 from "../assets/bellfort_1.jpg";
@@ -30,14 +24,19 @@ import ValleySoma from "../assets/valley_soma.jpg";
 import AileDore from "../assets/aile_dore.jpg";
 
 import PlayStyle from "../assets/top/playstyle.svg";
-import Craft from "../assets/top/craft.svg";
-import Quest from "../assets/top/quest.svg";
+import Navigator from "../components/Navigator.vue";
 import MarkdownView from "../components/MarkdownView.vue";
+import TextArrow from "../components/TextArrow.vue";
 
 export default {
-	components: { IntroduceCard, MarkdownView },
+	components: { Navigator, MarkdownView, TextArrow },
 	setup() {
 		const cards = [
+			{
+				image: Meltoria2,
+				title: "What is TheLow？",
+				text: `Minecraft JE - 1.8.8と1.8.9でプレイできる、(自称)MMORPGサーバーです。`,
+			},
 			{
 				image: Ashvy1,
 				title: "武器",
@@ -52,7 +51,6 @@ export default {
 				text: `近くの村人が何か困っているみたいです。話しかけてみましょう。
 				**優しいあなた**ならきっと見過ごせないはず。
 				クエストを完了すると報酬が貰えます。`,
-				icon: Quest,
 			},
 			{
 				image: ValleySoma,
@@ -66,40 +64,88 @@ export default {
 				image: AileDore,
 				title: "厳選する",
 				text: `### 装備の厳選
-				ダンジョンの報酬や、集めた素材でクラフトできる武器や防具はそれぞれ強さが違います。
-				何度もダンジョンにトライしたり、素材を集めてクラフトすることでより強い装備を得ることができます。
-				---
-				### 馬の厳選
-				TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ」と「ジャンプ力」などのステータスが違う。沢山孵化させ、より速く走り、より高く飛ぶ馬を選ぼう。
-				成長するとステータスが上昇する。Tier 5からTier 6になるとき2%の確立で空を飛べる「**骨馬**」になる。移動が各段に楽になる。
-				---
+ダンジョンの報酬や、集めた素材でクラフトできる武器や防具はそれぞれ強さが違います。
+何度もダンジョンにトライしたり、素材を集めてクラフトすることでより強い装備を得ることができます。
+### 馬の厳選
+TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ」と「ジャンプ力」などのステータスが違う。沢山孵化させ、より速く走り、より高く飛ぶ馬を選ぼう。
+成長するとステータスが上昇する。Tier 5からTier 6になるとき2%の確立で空を飛べる「**骨馬**」になる。移動が各段に楽になる。
 				`,
-				icon: Craft,
 			},
 			{
 				image: Ashvy2,
 				title: "転生",
-				text: `武器だけでなく自分自身を強化することもできます。
-				転生を繰り返しどんどん強化できますが、転生をすると次の転生に必要な経験値が増加します。`,
+				text: `武器だけでなく、経験値を消費することで自分自身を強化することもできます。
+				転生を繰り返すと自分をさらに強化できます。しかし、転生をすると次の転生に必要な経験値が増加します。`,
 			},
 		];
 
-		cards.forEach((card) => {
-			card.text = markdownToHtml(card.text);
-		});
+		const next = (e) => {
+			e.preventDefault();
+
+			const i = parseInt(e.pageY / window.innerHeight);
+			const target = document.getElementById(`${i + Math.sign(e.deltaY)}`);
+
+			if (target) {
+				target.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
+		};
 
 		return {
 			cards,
+			next,
 		};
 	},
 };
 </script>
+<style>
+::-webkit-scrollbar {
+	display: none;
+}
+</style>
+
 <style scoped>
-#top {
-	min-height: 1000px;
+.navi {
+	background: #fffc;
+	position: absolute;
+	top: 0;
 }
 
-.job-icon {
-	max-width: 50%;
+.card {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: white;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 36pt;
+}
+
+.msg {
+	max-width: 600px;
+}
+
+.card img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	z-index: -900;
+	position: absolute;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+	opacity: 0;
 }
 </style>

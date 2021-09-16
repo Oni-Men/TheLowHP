@@ -1,40 +1,30 @@
 <template>
 	<div class="main">
-		<div class="visual">
-			<img class="logo" src="../assets/TheLow-Logo-Set/logo.svg" alt="THE LOW" @click="downloadResourceSet()" />
+		<back-arrow class="desktop back-to-portal" :href="'https://portal.eximradar.jp/'">
+			EXRポータルに戻る
+		</back-arrow>
+		<router-link class="logo" :to="'/thelow/'">
+			<img src="../assets/TheLow-Logo-Set/logo.svg" alt="THE LOW" />
+		</router-link>
+		<div class="server-info" :class="{ offline: !online }">
 			<span v-if="online">{{ players }} Players Online</span>
-			<span v-else style="color: #f66;">SERVER IS OFFLINE</span>
-		</div>
-		<div class="panel"></div>
-	</div>
-	<div class="naviWrap">
-		<div id="navi">
-			<Separator class="separator" />
-			<div id="naviComp">
-				<div class="mobile">
-					<Navigator :show="navigatorStatus" @open="openMenu()" @close="closeMenu()" />
-				</div>
-				<div class="desktop">
-					<Navigator />
-				</div>
-			</div>
+			<span v-else>SERVER IS OFFLINE</span>
 		</div>
 	</div>
 </template>
 
 <script>
-import Navigator from "./Navigator.vue";
-import Separator from "./Separator.vue";
+import BackArrow from "./TextArrow.vue";
+
 import { fetchServerInformation } from "@/mixins";
 import { ref } from "vue";
 
 export default {
-	components: { Navigator, Separator },
+	components: { BackArrow },
 	name: "HeaderNavi",
 	setup() {
 		const players = ref(0);
 		const online = ref(true);
-		const navigatorStatus = ref(false);
 		fetchServerInformation().then(() => {
 			const serverInfo = JSON.parse(localStorage.getItem("server-info"));
 			if (serverInfo) {
@@ -43,54 +33,20 @@ export default {
 			}
 		});
 
-		const openMenu = () => {
-			navigatorStatus.value = true;
-		};
-
-		const closeMenu = () => {
-			navigatorStatus.value = false;
-		};
-
-		const downloadResourceSet = () => {
-			console.log("download");
-		};
-
 		return {
-			navigatorStatus,
-			openMenu,
-			closeMenu,
 			online,
 			players,
-			downloadResourceSet,
 		};
 	},
 };
 </script>
 
 <style scoped>
-@media screen and (max-width: 40em) {
-	.desktop {
-		display: none;
-	}
-}
-
-@media screen and (min-width: 40.01em) {
-	.mobile {
-		display: none;
-	}
-}
-
 .main {
-	position: fixed;
 	width: 100%;
-	max-height: 43vh;
-	z-index: -900;
-}
-
-.visual {
-	position: absolute;
-	width: 100%;
-	height: 43vh;
+	height: 30vh;
+	background: url("../assets/venemia.jpg") center center no-repeat;
+	background-size: cover;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -99,40 +55,25 @@ export default {
 }
 
 .logo {
-	max-width: 80%;
-	max-height: 60%;
-	width: 20em;
+	max-width: 50%;
+	max-height: 30%;
+	width: 65mm;
 	height: auto;
 }
 
-.naviWrap {
-	width: 100%;
-	height: 50vh;
-	position: relative;
-	z-index: 100;
+.server-info {
+	font-weight: lighter;
+	padding: 0.1em 0.5em;
 }
 
-#navi {
-	width: 100%;
+.offline {
+	color: #fff;
+	background-color: #f33;
+}
+
+.back-to-portal {
 	position: absolute;
-	bottom: 0;
-}
-
-.panel {
-	height: 50vh;
-	overflow: hidden;
-	width: 100%;
-	background: url("../assets/venemia.jpg") center center no-repeat;
-	background-size: cover;
-}
-
-#naviComp {
-	background: white;
-	margin: 0;
-}
-
-.separator {
-	position: relative;
-	bottom: -1px;
+	top: 2em;
+	left: 2em;
 }
 </style>
