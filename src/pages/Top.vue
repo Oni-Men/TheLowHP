@@ -1,5 +1,6 @@
 <template>
 	<div id="top" @mousewheel="next">
+		<responsive-navi />
 		<div v-for="(card, index) in cards" :key="card.image" :id="index" class="card">
 			<img :src="card.image" :key="card.image" />
 			<div class="msg">
@@ -12,7 +13,6 @@
 				</template>
 			</div>
 		</div>
-		<navigator class="navi" />
 	</div>
 </template>
 <script>
@@ -23,13 +23,12 @@ import Bellfort1 from "../assets/bellfort_1.jpg";
 import ValleySoma from "../assets/valley_soma.jpg";
 import AileDore from "../assets/aile_dore.jpg";
 
-import PlayStyle from "../assets/top/playstyle.svg";
-import Navigator from "../components/Navigator.vue";
 import MarkdownView from "../components/MarkdownView.vue";
 import TextArrow from "../components/TextArrow.vue";
+import ResponsiveNavi from "../components/ResponsiveNavi.vue";
 
 export default {
-	components: { Navigator, MarkdownView, TextArrow },
+	components: { MarkdownView, TextArrow, ResponsiveNavi },
 	setup() {
 		const cards = [
 			{
@@ -43,7 +42,6 @@ export default {
 				text: `剣、弓、魔法の三つの武器のタイプがあります。
 				武器タイプごとに経験値が分かれています。
 				敵を倒すと、倒した武器タイプの経験値を得られます。`,
-				icon: PlayStyle,
 			},
 			{
 				image: Bellfort1,
@@ -138,14 +136,5 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 	width: 100%;
 	z-index: -900;
 	position: absolute;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-	opacity: 0;
 }
 </style>

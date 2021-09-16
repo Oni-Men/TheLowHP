@@ -6,14 +6,7 @@
 		<address-popout style="z-index:900;" />
 		<discord-logo />
 		<header-navi />
-		<div class="navi">
-			<div class="mobile">
-				<navigator :show="isNaviVisible" @open="openMenu()" @close="closeMenu()" />
-			</div>
-			<div class="desktop">
-				<navigator />
-			</div>
-		</div>
+		<responsive-navi />
 		<div class="background">
 			<div v-if="route.name !== '404'" class="content">
 				<router-view class="view" />
@@ -39,8 +32,8 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import HeaderNavi from "./components/HeaderNavi.vue";
 import SideBar from "./components/SideBar.vue";
-import Navigator from "./components/Navigator.vue";
 import Top from "./pages/Top.vue";
+import ResponsiveNavi from "./components/ResponsiveNavi.vue";
 
 export default {
 	name: "App",
@@ -49,8 +42,8 @@ export default {
 		DiscordLogo,
 		HeaderNavi,
 		SideBar,
-		Navigator,
 		Top,
+		ResponsiveNavi,
 	},
 	setup() {
 		const router = useRouter();
