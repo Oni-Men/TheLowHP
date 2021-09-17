@@ -77,8 +77,23 @@ html {
 	scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+	position: absolute;
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ddd;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #353535;
+}
+
 body {
 	margin: 0;
+	overflow-y: scroll;
 }
 
 @media screen and (max-width: 40em) {

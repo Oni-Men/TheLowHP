@@ -98,11 +98,6 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 	},
 };
 </script>
-<style>
-::-webkit-scrollbar {
-	display: none;
-}
-</style>
 
 <style scoped>
 .navi {
@@ -128,13 +123,15 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 
 .msg {
 	max-width: 600px;
+	padding: 1em;
 }
 
 .card img {
 	object-fit: cover;
-	height: 100%;
+	height: 100vh;
 	width: 100%;
-	z-index: -900;
+	z-index: -1;
+	overflow: hidden;
 	position: absolute;
 }
 </style>
