@@ -1,19 +1,7 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import { router } from "./router";
-import { globalMixins } from "./mixins";
-import VueClipboard from "vue3-clipboard";
+import App from "./App.svelte";
 
-import CopyField from "./components/CopyField";
-
-const app = createApp(App);
-app.mixin(globalMixins);
-app.use(router);
-app.use(VueClipboard, {
-	autoSetContainer: false,
-	appendToBody: false,
+const app = new App({
+	target: document.body,
 });
 
-app.component("CopyField", CopyField);
-
-app.mount("#app");
+export default app;

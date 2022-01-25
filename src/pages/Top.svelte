@@ -1,20 +1,3 @@
-<template>
-	<div id="top" @mousewheel="next">
-		<responsive-navi />
-		<div v-for="(card, index) in cards" :key="card.image" :id="index" class="card">
-			<img :src="card.image" :key="card.image" />
-			<div class="msg">
-				<span class="title">{{ card.title }}</span>
-				<markdown-view :md="card.text" />
-				<template v-if="index + 1 !== cards.length">
-					<text-arrow :href="`#${index + 1}`" pos="bottom">
-						NEXT
-					</text-arrow>
-				</template>
-			</div>
-		</div>
-	</div>
-</template>
 <script>
 import Meltoria2 from "../assets/meltoria_2.jpg";
 import Ashvy1 from "../assets/ashvy_1.jpg";
@@ -23,14 +6,11 @@ import Bellfort1 from "../assets/bellfort_1.jpg";
 import ValleySoma from "../assets/valley_soma.jpg";
 import AileDore from "../assets/aile_dore.jpg";
 
-import MarkdownView from "../components/MarkdownView.vue";
-import TextArrow from "../components/TextArrow.vue";
-import ResponsiveNavi from "../components/ResponsiveNavi.vue";
+import MarkdownView from "../components/MarkdownView.svelte";
+import TextArrow from "../components/TextArrow.svelte";
+import ResponsiveNavi from "../components/ResponsiveNavi.svelte";
 
-export default {
-	components: { MarkdownView, TextArrow, ResponsiveNavi },
-	setup() {
-		const cards = [
+const cards = [
 			{
 				image: Meltoria2,
 				title: "What is TheLow？",
@@ -77,61 +57,68 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 			},
 		];
 
-		const next = (e) => {
-			e.preventDefault();
+function next(e) {
+	e.preventDefault();
 
-			const i = parseInt(e.pageY / window.innerHeight);
-			const target = document.getElementById(`${i + Math.sign(e.deltaY)}`);
+	const i = parseInt(e.pageY / window.innerHeight);
+	const target = document.getElementById(`${i + Math.sign(e.deltaY)}`);
 
-			if (target) {
-				target.scrollIntoView({
-					behavior: "smooth",
-					block: "start",
-				});
-			}
-		};
-
-		return {
-			cards,
-			next,
-		};
-	},
-};
+	if (target) {
+		target.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+	}
+}
 </script>
 
-<style scoped>
-.navi {
-	background: #fffc;
-	position: absolute;
-	top: 0;
-}
+<div id="top" on:mousewheel={next}>
+	<ResponsiveNavi />
+	{#each cards as card, index}
+		<img src={card.image} :key="card.image" alt="" />
+		<div class="msg">
+			<span class="title">{card.title}</span>
+			<MarkdownView bind:markdown={card.text} />
+			{#if index + 1 !== cards.length}
+				<TextArrow bind:href={`#${index + 1}`} bind:pos={bottom}>NEXT</TextArrow>
+			{/if}
+		</div>
+	{/each}
+</div>
 
-.card {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	color: white;
-}
+<style>
+	.navi {
+		background: #fffc;
+		position: absolute;
+		top: 0;
+	}
 
-.title {
-	font-weight: 600;
-	font-size: 36pt;
-}
+	.card {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: white;
+	}
 
-.msg {
-	max-width: 600px;
-	padding: 1em;
-}
+	.title {
+		font-weight: 600;
+		font-size: 36pt;
+	}
 
-.card img {
-	object-fit: cover;
-	height: 100vh;
-	width: 100%;
-	z-index: -1;
-	overflow: hidden;
-	position: absolute;
-}
+	.msg {
+		max-width: 600px;
+		padding: 1em;
+	}
+
+	.card img {
+		object-fit: cover;
+		height: 100vh;
+		width: 100%;
+		z-index: -1;
+		overflow: hidden;
+		position: absolute;
+	}
 </style>
