@@ -1,64 +1,54 @@
 <script>
-import { fade } from "svelte/transition";
-import { createEventDispatcher } from 'svelte';
+	import { page } from '$app/stores';
+	import { createEventDispatcher } from 'svelte';
 
-const dispatch = createEventDispatcher();
+	const dispatch = createEventDispatcher();
 
-function openMenu() {
-	dispatch("open");
-}
+	function openMenu() {
+		dispatch('open');
+	}
 
-function closeMenu() {
-	dispatch("close");
-}
+	function closeMenu() {
+		dispatch('close');
+	}
 
-export let show = true;
-let items = [
-			{
-				name: "article",
-				params: {
-					id: "about",
-				},
-				display: "TheLowとは",
-			},
-			{
-				name: "article",
-				params: {
-					id: "join",
-				},
-				display: "参加する",
-			},
-			{
-				name: "article",
-				params: {
-					id: "rules",
-				},
-				display: "ルール",
-			},
-			{
-				name: "article",
-				params: {
-					id: "faq",
-				},
-				display: "よくある質問",
-			},
-		];
+	export let show = true;
+	let items = [
+		{
+			id: '/thelow/about',
+			display: 'TheLowとは'
+		},
+		{
+			id: '/thelow/join',
+			display: '参加する'
+		},
+		{
+			id: '/thelow/rules',
+			display: 'ルール'
+		},
+		{
+			id: '/thelow/faq',
+			display: 'よくある質問'
+		}
+	];
 </script>
 
 {#if show}
-	<div class="navigator" v-if="show" on:click={closeMenu} transition:fade>
+	<div class="navigator" v-if="show" on:click={closeMenu}>
 		<nav>
 			<ul>
 				{#each items as item}
-					<!-- <router-link v-for="item of items" :key="item.url" :to="item"> -->
-					<li>{item.display}</li>
-					<!-- </router-link> -->
+					<a class:active={$page.url.pathname === item.id} href={item.id}>
+						<li>
+							{item.display}
+						</li>
+					</a>
 				{/each}
 			</ul>
 		</nav>
 	</div>
 {:else}
-	<img class="openMenu" on:click={openMenu} src="../assets/icons/menu.svg" alt="Open button" />
+	<img class="openMenu" on:click={openMenu} src="/icons/menu.svg" alt="Open button" />
 {/if}
 
 <style>
@@ -87,10 +77,10 @@ let items = [
 			flex-direction: column;
 		}
 
-		/* a {
+		a {
 			margin: 0;
 			width: 50%;
-		} */
+		}
 
 		ul li {
 			width: 100%;
@@ -110,17 +100,19 @@ let items = [
 		}
 	}
 
-	@media screen and (min-width: 40.01em) {
+	@media screen and (min-width: 40em) {
 		.navigator {
 			width: 100%;
 			padding: 1em 0;
+			background: white;
 		}
 
 		ul {
 			max-width: 1000px;
 			flex-direction: row;
 		}
-		ul li {
+
+		li {
 			padding: 0.2em 1em;
 			width: 120px;
 			height: 1.2em;
@@ -130,8 +122,8 @@ let items = [
 			display: none;
 		}
 
-		/* a::after {
-			content: "";
+		a::after {
+			content: '';
 			display: block;
 			position: relative;
 			top: 4px;
@@ -146,7 +138,15 @@ let items = [
 		a:hover::after {
 			transition: transform 0.2s ease-out;
 			transform: scale(1, 1);
-		} */
+		}
+
+		.active {
+			color: #7e9fc5;
+		}
+
+		a.active::after {
+			transform: scale(1, 1);
+		}
 	}
 
 	ul {

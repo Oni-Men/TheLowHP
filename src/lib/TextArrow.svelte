@@ -1,10 +1,13 @@
 <script>
-export let href = "";
-export let pos = "";
+	export let href = '';
+	export let up = false;
+	export let down = false;
+	export let left = false;
+	export let right = false;
 </script>
 
 <a {href}>
-	<div class="back-arrow" class:pos>
+	<div class="arrow" class:up class:down class:left class:right>
 		<svg
 			xmlns:svg="http://www.w3.org/2000/svg"
 			xmlns="http://www.w3.org/2000/svg"
@@ -26,33 +29,33 @@ export let pos = "";
 </a>
 
 <style>
-	.back-arrow {
+	.arrow {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		color: white;
 	}
 
-	.back-arrow svg {
+	.arrow svg {
 		padding-right: 0.25em;
 		width: 1em;
 		height: 1em;
 		fill: currentColor;
 	}
 
-	/* .top {
+	.up {
 		flex-direction: column;
 	}
 
-	.top svg {
+	.up svg {
 		transform: rotateZ(90deg);
 	}
 
-	.bottom {
+	.down {
 		flex-direction: column-reverse;
 	}
 
-	.bottom svg {
+	.down svg {
 		transform: rotateZ(-90deg);
 	}
 
@@ -66,5 +69,5 @@ export let pos = "";
 
 	.right svg {
 		transform: rotateZ(180deg);
-	} */
+	}
 </style>

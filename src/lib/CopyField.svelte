@@ -1,5 +1,5 @@
 <script>
-	import { fade, scale } from "svelte/transition";
+	import { fade, scale } from 'svelte/transition';
 
 	export let text;
 	export let shadow = false;
@@ -10,18 +10,24 @@
 	function copyText() {
 		if (!dummy) return;
 		dummy.select();
-		document.execCommand("copy");
+		document.execCommand('copy');
 	}
 </script>
 
 <div id="copy-field">
 	<span class="field" class:shadow>
-		<span>{text}</span>
+		<span class="mono">{text}</span>
 		<span class="icons">
 			{#if !lock}
-				<img transition:fade on:click={copyText} class="icon copy" src="./assets/icons/copy.svg" alt="" />
+				<img
+					transition:fade
+					on:click={copyText}
+					class="icon copy"
+					src="/thelow/icons/copy.svg"
+					alt=""
+				/>
 			{:else}
-				<img transition:scale class="icon ok" src="./assets/icons/ok.svg" alt="" />
+				<img transition:scale class="icon ok" src="/thelow/icons/ok.svg" alt="" />
 			{/if}
 		</span>
 	</span>
@@ -35,8 +41,7 @@
 		background: #eee;
 		display: inline-block;
 		border-radius: 0.4em;
-		font-family: "Roboto Mono", monospace;
-		font-size: 16px;
+		font-size: 14px;
 	}
 
 	.icons {
@@ -65,7 +70,7 @@
 	}
 
 	.shadow {
-		box-shadow: 0 0.1em 0.1em #0066;
+		filter: drop-shadow(1px 1px 1.5px #333);
 	}
 
 	@keyframes pop {

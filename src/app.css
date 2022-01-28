@@ -32,9 +32,8 @@ body {
   color: #353535;
 }
 
-
-pre {
-  padding: 0.4em 0.6em;
+code {
+  padding: 0.2em 0.4em;
   background: #eee;
   display: inline-block;
   border-radius: 0.4em;
@@ -75,10 +74,17 @@ hr {
   border-top: 4px dotted #327a9b;
 }
 
+img {
+  width: 100%;
+}
+
 .center {
   text-align: center;
 }
 
+.mono {
+  font-family: "Roboto Mono", monospace;
+}
 
 @media screen and (max-width: 40em) {
   .desktop-only {

@@ -1,14 +1,14 @@
 <script>
-	import BackArrow from "./TextArrow.svelte";
-	import { onMount } from "svelte";
-	import { fetchServerInformation } from "../mixins";
+	import ArrowButton from './TextArrow.svelte';
+	import { onMount } from 'svelte';
+	import { fetchServerInformation } from '../mixins';
 
 	let online = false;
 	let players = 0;
 
 	onMount(() => {
 		fetchServerInformation().then(() => {
-			const serverInfo = JSON.parse(localStorage.getItem("server-info"));
+			const serverInfo = JSON.parse(localStorage.getItem('server-info'));
 			if (serverInfo) {
 				online = serverInfo.online;
 				players = serverInfo.players.now;
@@ -17,12 +17,12 @@
 	});
 </script>
 
-<div class="main">
+<header>
 	<div class="desktop-only back-to-portal">
-		<BackArrow href={"https://portal.eximradar.jp/"}>EXRポータルに戻る</BackArrow>
+		<ArrowButton href={'https://portal.eximradar.jp/'}>EXRポータルに戻る</ArrowButton>
 	</div>
 	<a class="logo" href="/thelow/">
-		<img src="../assets/TheLow-Logo-Set/logo.svg" alt="THE LOW" />
+		<img src="/thelow/TheLow-Logo-Set/logo.svg" alt="THE LOW" />
 	</a>
 	<div class="server-info" class:offline={!online}>
 		{#if online}
@@ -31,13 +31,13 @@
 			<span>SERVER IS OFFLINE</span>
 		{/if}
 	</div>
-</div>
+</header>
 
 <style>
-	.main {
+	header {
 		width: 100%;
 		height: 30vh;
-		background: url("../assets/venemia.jpg") center center no-repeat;
+		background: url('/thelow/venemia.jpg') center center no-repeat;
 		background-size: cover;
 		display: flex;
 		justify-content: center;
