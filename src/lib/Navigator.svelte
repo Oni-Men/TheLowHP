@@ -1,18 +1,18 @@
 <script>
 	import { page } from '$app/stores';
-	import { createEventDispatcher } from 'svelte';
+	import { fade, scale } from 'svelte/transition';
 
-	const dispatch = createEventDispatcher();
+	export let showAlways = false;
+	export let hide = true;
 
 	function openMenu() {
-		dispatch('open');
+		hide = false;
 	}
 
 	function closeMenu() {
-		dispatch('close');
+		hide = true;
 	}
 
-	export let show = true;
 	let items = [
 		{
 			id: '/thelow/about',
@@ -33,8 +33,16 @@
 	];
 </script>
 
-{#if show}
-	<div class="navigator" v-if="show" on:click={closeMenu}>
+{#if !showAlways && hide}
+	<img
+		class="openMenu mobile-only"
+		on:click={openMenu}
+		src="/thelow/icons/menu.svg"
+		alt="Open button"
+		transition:scale
+	/>
+{:else}
+	<div class="navigator" class:hide on:click={closeMenu} transition:fade>
 		<nav>
 			<ul>
 				{#each items as item}
@@ -47,8 +55,6 @@
 			</ul>
 		</nav>
 	</div>
-{:else}
-	<img class="openMenu" on:click={openMenu} src="/icons/menu.svg" alt="Open button" />
 {/if}
 
 <style>
@@ -90,13 +96,8 @@
 			border-radius: 0.2em;
 		}
 
-		.openMenu {
-			position: fixed;
-			right: 1em;
-			bottom: 1em;
-			width: 4em;
-			height: 4em;
-			z-index: 9999;
+		.hide {
+			display: none;
 		}
 	}
 
@@ -147,6 +148,15 @@
 		a.active::after {
 			transform: scale(1, 1);
 		}
+	}
+
+	.openMenu {
+		position: fixed;
+		right: 1em;
+		bottom: 1em;
+		width: 2.5em;
+		height: 2.5em;
+		z-index: 9999;
 	}
 
 	ul {

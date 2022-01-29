@@ -21,7 +21,7 @@
 	<div class="desktop-only back-to-portal">
 		<ArrowButton href={'https://portal.eximradar.jp/'}>EXRポータルに戻る</ArrowButton>
 	</div>
-	<a class="logo" href="/thelow/">
+	<a class="logo" href="/thelow">
 		<img src="/thelow/TheLow-Logo-Set/logo.svg" alt="THE LOW" />
 	</a>
 	<div class="server-info" class:offline={!online}>

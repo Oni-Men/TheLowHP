@@ -4,11 +4,12 @@
 
 <script>
 	import { page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 
 	import Header from '$lib/Header.svelte';
 	import CopyField from '$lib/CopyField.svelte';
-	import ResponsiveNavi from '$lib/ResponsiveNavi.svelte';
-	import '../../app.css';
+	import Navigator from '$lib/Navigator.svelte';
+	import '../app.css';
 
 	let index = true;
 	$: {
@@ -19,9 +20,14 @@
 {#if !index}
 	<Header />
 {/if}
-<div class={index ? 'fixed' : 'sticky'}>
-	<ResponsiveNavi />
+
+<div class={`${index ? 'fixed' : 'sticky'} desktop-only`}>
+	<Navigator showAlways={true} />
 </div>
+<div class="mobile-only">
+	<Navigator />
+</div>
+
 <div class="address desktop-only">
 	<CopyField text="mc.eximradar.jp" shadow="true" />
 </div>
@@ -64,11 +70,11 @@
 	.sticky {
 		position: sticky;
 		top: 0;
-		box-shadow: 0 1px 1px #3366;
 	}
 
 	main {
-		min-height: calc(70vh - 300px);
+		min-height: calc(70vh - 7.5em);
+		padding: 0 0.5em;
 	}
 
 	footer {

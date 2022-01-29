@@ -4,29 +4,30 @@
 
 <script>
 	import ArrowButton from '$lib/TextArrow.svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	const cards = [
 		{
-			image: '/meltoria_2.jpg',
+			image: 'meltoria_2.jpg',
 			title: 'What is TheLow？',
 			text: `Minecraft JE - 1.8.8と1.8.9でプレイできる、(自称)MMORPGサーバーです。`
 		},
 		{
-			image: '/ashvy_1.jpg',
+			image: 'ashvy_1.jpg',
 			title: '武器',
 			text: `剣、弓、魔法の三つの武器のタイプがあります。
 				武器タイプごとに経験値が分かれています。
 				敵を倒すと、倒した武器タイプの経験値を得られます。`
 		},
 		{
-			image: '/bellfort_1.jpg',
+			image: 'bellfort_1.jpg',
 			title: 'クエスト',
 			text: `近くの村人が何か困っているみたいです。話しかけてみましょう。
 				**優しいあなた**ならきっと見過ごせないはず。
 				クエストを完了すると報酬が貰えます。`
 		},
 		{
-			image: '/valley_soma.jpg',
+			image: 'valley_soma.jpg',
 			title: 'ダンジョン',
 			text: `現在、100以上のダンジョンが存在します。難易度が上昇するにつれ報酬も価値の高いものになります。
 				装備が整ってきたらチャレンジしてみましょう。さらにビルダー達の努力により、どんどん新しいダンジョンがリリースされます。
@@ -34,7 +35,7 @@
 				`
 		},
 		{
-			image: '/aile_dore.jpg',
+			image: 'aile_dore.jpg',
 			title: '厳選する',
 			text: `### 装備の厳選
 ダンジョンの報酬や、集めた素材でクラフトできる武器や防具はそれぞれ強さが違います。
@@ -45,7 +46,7 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 				`
 		},
 		{
-			image: '/ashvy_2.jpg',
+			image: 'ashvy_2.jpg',
 			title: '転生',
 			text: `武器だけでなく、経験値を消費することで自分自身を強化することもできます。
 				転生を繰り返すと自分をさらに強化できます。しかし、転生をすると次の転生に必要な経験値が増加します。`
@@ -77,7 +78,7 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 			<img src={`/thelow/${card.image}`} alt={card.title} />
 			<div class="msg">
 				<span class="title">{card.title}</span>
-				<span>{card.text}</span>
+				<SvelteMarkdown source={card.text} />
 				{#if index + 1 !== cards.length}
 					<ArrowButton href={`#${index + 1}`} down={true}>NEXT</ArrowButton>
 				{/if}
@@ -85,7 +86,7 @@ TheLowの馬は卵生だ。卵から孵化するのだ！馬ごとに「速さ�
 		</div>
 	{/each}
 </div>
-<div class="go-top">
+<div class="go-top desktop-only">
 	<ArrowButton href={`#0`} up={true}>TOP</ArrowButton>
 </div>
 

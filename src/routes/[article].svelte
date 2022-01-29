@@ -1,18 +1,19 @@
 <script context="module">
 	import { browser } from '$app/env';
+	import { getMarkdownTitle } from '../mixins';
 	export const router = browser;
 	export const prerender = true;
 
 	export const load = async ({ params, fetch }) => {
 		const url = `https://raw.githubusercontent.com/Oni-Men/TheLowHP/master/docs/ja_JP/${params.article}.md`;
 		const res = await fetch(url);
-		// const res = await fetch(`/articles/${page}.json`);
 
 		if (res.ok) {
 			const source = await res.text();
+			const title = getMarkdownTitle(source) || params.article;
 
 			return {
-				props: { source }
+				props: { title, source }
 			};
 		}
 
@@ -27,11 +28,12 @@
 <script>
 	import SvelteMarkdown from 'svelte-markdown';
 
+	export let title = 'Article';
 	export let source;
 </script>
 
 <svelte:head>
-	<title>About - TheLow HP</title>
+	<title>{title} - TheLow HP</title>
 </svelte:head>
 
 <div class="content">
