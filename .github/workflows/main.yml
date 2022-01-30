@@ -1,0 +1,50 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Use yarn
+        run: yarn
+        run: yarn build
+
+      - name: Deploy
+        run: |
+          cd build
+          echo "
+            $(find . -type d | sed -e 's/^/mkdir /;')
+            put -r .
+            exit
+          " > /tmp/commands
+          expect -c "
+            spawn ${{ secrets.PROCESS }} < /tmp/commands
+            expect {
+              '(yes/no)?' {
+                send 'yes\n'
+                exp_continue
+              }
+              'password:' {
+                send '${{ secrets.PASSWORD }}\n'
+              }
+            }
+            expect {
+              '\\\$' {
+                  exit 0
+              }
+            }
+          "

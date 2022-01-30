@@ -1,0 +1,99 @@
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  position: absolute;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #353535;
+}
+
+::selection {
+  background: #7e9fc5;
+  color: white;
+}
+
+body {
+  margin: 0;
+  overflow-y: scroll;
+  font-family: "Alata", Verdana, "游ゴシック", "ヒラギノ", sans-serif;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  color: #353535;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  background: #eee;
+  display: inline-block;
+  border-radius: 0.4em;
+  font-family: "Roboto Mono", monospace;
+}
+
+h2 {
+  border-bottom: 2px solid #7e9fc5;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+h3 {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+p {
+  padding: 0 1em;
+}
+
+span {
+  display: inline-block;
+}
+
+i {
+  color: #327a9b;
+}
+
+a {
+  color: #327a9b;
+  text-decoration: none;
+}
+
+hr {
+  height: 0;
+  border: none;
+  border-top: 4px dotted #327a9b;
+}
+
+img {
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.mono {
+  font-family: "Roboto Mono", monospace;
+}
+
+@media screen and (max-width: 40em) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 40.01em) {
+  .mobile-only {
+    display: none;
+  }
+}
