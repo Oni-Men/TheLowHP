@@ -49,13 +49,13 @@
 
 <style>
 	.field {
-		margin: 0.5em 0;
-		padding: 0.4em 0.6em;
+		padding: 0.6em 1.0em;
 		background: #eee;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: 0.4em;
+		column-gap: 4px;
+		border-radius: 1.2em;
 		font-size: 14px;
 	}
 
@@ -79,6 +79,6 @@
 	}
 
 	.shadow {
-		filter: drop-shadow(1px 1px 1.5px #333);
+		filter: drop-shadow(0px 0px 5px #333);
 	}
 </style>
