@@ -40,7 +40,7 @@
 	<slot />
 </main>
 <footer>
-	<p>COPYRIGHT &copy;2021 TheLow ALL RIGHT RESERVED.</p>
+	<p>COPYRIGHT &copy;2025 TheLow ALL RIGHT RESERVED.</p>
 </footer>
 
 <style>
