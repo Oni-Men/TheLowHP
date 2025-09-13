@@ -14,14 +14,7 @@
 
 ### Q. 許可されている MOD が知りたいです
 
-- Optifine
-- StatusEffectHUD
-- ArmorStatusHUD
-- GammaBright
-- Toggle Sneak
-- Damage Indicators
-
-これらが許可されています。
+[TheLow ルール](https://docs.google.com/document/d/1vRDeH5tRJ5_y8RR5vqDM0jJCUPZjd6D5Hs-TgM9zMDQ/edit?usp=sharing)をお読みください。
 
 ## その他の質問
 
